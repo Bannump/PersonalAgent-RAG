@@ -1,32 +1,49 @@
 """
 Vector Store implementation using ChromaDB for RAG
+ChromaDB is optional - falls back to no-op mode for lightweight deployments
 """
-import chromadb
-from chromadb.config import Settings as ChromaSettings
 from typing import List, Dict, Optional, Any
 from pathlib import Path
 from src.my_personal_agent.config import settings
-from src.my_personal_agent.core.llm_client import LLMClient
+
+# Try to import chromadb (optional for lightweight deployments)
+try:
+    import chromadb
+    from chromadb.config import Settings as ChromaSettings
+    CHROMADB_AVAILABLE = True
+except ImportError:
+    CHROMADB_AVAILABLE = False
+    chromadb = None
 
 
 class VectorStore:
     """Vector store for storing and retrieving document embeddings"""
     
     def __init__(self, collection_name: str = "personal_agent", llm_client: Optional[LLMClient] = None):
+        # Import LLMClient here to avoid circular imports
+        from src.my_personal_agent.core.llm_client import LLMClient
+        
         self.collection_name = collection_name
         self.llm_client = llm_client or LLMClient()
+        self._chromadb_available = CHROMADB_AVAILABLE
         
-        # Initialize ChromaDB client
-        self.client = chromadb.PersistentClient(
-            path=settings.vector_db_path,
-            settings=ChromaSettings(anonymized_telemetry=False)
-        )
-        
-        # Get or create collection
-        self.collection = self.client.get_or_create_collection(
-            name=collection_name,
-            metadata={"hnsw:space": "cosine"}
-        )
+        if CHROMADB_AVAILABLE:
+            # Initialize ChromaDB client
+            self.client = chromadb.PersistentClient(
+                path=settings.vector_db_path,
+                settings=ChromaSettings(anonymized_telemetry=False)
+            )
+            
+            # Get or create collection
+            self.collection = self.client.get_or_create_collection(
+                name=collection_name,
+                metadata={"hnsw:space": "cosine"}
+            )
+        else:
+            # Lightweight mode - no vector store
+            self.client = None
+            self.collection = None
+            print("INFO: ChromaDB not available. Running in lightweight mode (no vector storage).")
     
     def add_documents(
         self,
@@ -37,6 +54,10 @@ class VectorStore:
         """Add documents to the vector store"""
         if not texts:
             return []
+        
+        # Lightweight mode - no vector storage
+        if not self._chromadb_available:
+            return [f"doc_{i}" for i in range(len(texts))]
         
         # Generate embeddings
         embeddings = []
@@ -69,6 +90,10 @@ class VectorStore:
         filter: Optional[Dict[str, Any]] = None,
     ) -> List[Dict[str, Any]]:
         """Search for similar documents"""
+        # Lightweight mode - return empty results
+        if not self._chromadb_available:
+            return []
+        
         # Generate query embedding
         query_embedding = self.llm_client.get_embeddings(query)
         
@@ -94,6 +119,9 @@ class VectorStore:
     
     def delete_collection(self):
         """Delete the entire collection"""
+        if not self._chromadb_available:
+            return
+        
         self.client.delete_collection(name=self.collection_name)
         self.collection = self.client.get_or_create_collection(
             name=self.collection_name,
@@ -102,6 +130,13 @@ class VectorStore:
     
     def get_collection_info(self) -> Dict[str, Any]:
         """Get information about the collection"""
+        if not self._chromadb_available:
+            return {
+                "collection_name": self.collection_name,
+                "document_count": 0,
+                "mode": "lightweight (no ChromaDB)",
+            }
+        
         count = self.collection.count()
         return {
             "collection_name": self.collection_name,

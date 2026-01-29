@@ -5,9 +5,16 @@ import os
 from pathlib import Path
 from typing import Optional, List, Dict, Any
 import PyPDF2
-import pdfplumber
 from docx import Document
 from src.my_personal_agent.config import settings
+
+# Try to import pdfplumber (optional for lightweight deployments)
+try:
+    import pdfplumber
+    PDFPLUMBER_AVAILABLE = True
+except ImportError:
+    PDFPLUMBER_AVAILABLE = False
+    pdfplumber = None
 
 
 class FileHandler:
@@ -58,22 +65,28 @@ class FileHandler:
             raise ValueError(f"Unsupported file type: {extension}")
     
     def _extract_pdf_text(self, file_path: Path) -> str:
-        """Extract text from PDF using pdfplumber (more accurate)"""
+        """Extract text from PDF using pdfplumber (more accurate) or PyPDF2 fallback"""
         text_parts = []
-        try:
-            with pdfplumber.open(file_path) as pdf:
-                for page in pdf.pages:
-                    text = page.extract_text()
-                    if text:
-                        text_parts.append(text)
-        except Exception:
-            # Fallback to PyPDF2
-            with open(file_path, "rb") as file:
-                pdf_reader = PyPDF2.PdfReader(file)
-                for page in pdf_reader.pages:
-                    text = page.extract_text()
-                    if text:
-                        text_parts.append(text)
+        
+        # Try pdfplumber first if available (more accurate)
+        if PDFPLUMBER_AVAILABLE:
+            try:
+                with pdfplumber.open(file_path) as pdf:
+                    for page in pdf.pages:
+                        text = page.extract_text()
+                        if text:
+                            text_parts.append(text)
+                return "\n".join(text_parts)
+            except Exception:
+                pass  # Fall through to PyPDF2
+        
+        # Fallback to PyPDF2
+        with open(file_path, "rb") as file:
+            pdf_reader = PyPDF2.PdfReader(file)
+            for page in pdf_reader.pages:
+                text = page.extract_text()
+                if text:
+                    text_parts.append(text)
         
         return "\n".join(text_parts)
     
