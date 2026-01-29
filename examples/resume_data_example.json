@@ -1,0 +1,65 @@
+{
+  "experiences": [
+    {
+      "title": "Senior Software Engineer",
+      "company": "Tech Solutions Inc.",
+      "duration": "2021 - Present",
+      "description": "Led development of microservices architecture using Python and React. Reduced system latency by 40% through optimization. Mentored junior developers and conducted code reviews. Implemented CI/CD pipelines and automated testing."
+    },
+    {
+      "title": "Software Engineer",
+      "company": "StartupXYZ",
+      "duration": "2019 - 2021",
+      "description": "Developed full-stack web applications using Python, Django, and JavaScript. Implemented REST APIs and database schemas. Increased deployment frequency by 300% through automation. Collaborated with cross-functional teams."
+    },
+    {
+      "title": "Junior Developer",
+      "company": "DevCorp",
+      "duration": "2017 - 2019",
+      "description": "Built REST APIs and database schemas. Learned agile development practices. Participated in code reviews and sprint planning. Contributed to multiple production deployments."
+    }
+  ],
+  "skills": [
+    "Python",
+    "JavaScript",
+    "React",
+    "Node.js",
+    "Django",
+    "PostgreSQL",
+    "MongoDB",
+    "Docker",
+    "Kubernetes",
+    "AWS",
+    "Git",
+    "CI/CD",
+    "REST APIs",
+    "Microservices",
+    "Agile/Scrum",
+    "Machine Learning",
+    "TensorFlow",
+    "PyTorch"
+  ],
+  "education": [
+    {
+      "degree": "Bachelor of Science in Computer Science",
+      "institution": "State University",
+      "year": "2017",
+      "details": "GPA: 3.8/4.0, Magna Cum Laude. Relevant coursework: Data Structures, Algorithms, Software Engineering, Database Systems, Machine Learning, Distributed Systems."
+    }
+  ],
+  "portfolio": [
+    {
+      "name": "E-Commerce Platform",
+      "description": "Built a scalable e-commerce platform using React and Node.js. Implemented payment processing and inventory management. Served 10,000+ users with 99.9% uptime."
+    },
+    {
+      "name": "Machine Learning Model",
+      "description": "Developed a recommendation system using Python and scikit-learn. Improved user engagement by 25% through personalized content recommendations."
+    },
+    {
+      "name": "Cloud Infrastructure Migration",
+      "description": "Migrated legacy applications to AWS cloud infrastructure. Reduced costs by 30% and improved scalability. Implemented monitoring and alerting systems."
+    }
+  ],
+  "target_job": "Senior Software Engineer position focusing on full-stack development with Python and React, requiring experience with cloud infrastructure and microservices architecture. Looking for opportunities to lead technical initiatives and mentor team members."
+}

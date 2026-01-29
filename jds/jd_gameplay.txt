@@ -1,0 +1,33 @@
+Full job description
+About Us
+
+
+Easy Games is an independent game development studio with a massive audience. We’ve grown our audience to over 20M monthly users and reached heights of more than 350k concurrent players. We have already published two successful games and are planning to release many more. Our games are all multiplayer focused and consistently updated.
+
+Our engineering team is rapidly expanding and we are looking for talented developers that are passionate about gaming and building quality software. You will help us grow our current games and also build new games on the Roblox platform.
+
+Our Stack
+
+We use some Roblox specific tools and frameworks that will likely be unfamiliar. Because of this, it is essential that you be willing to learn and ask questions. Our primary programming language is TypeScript, a modern typed language similar to C#. Our TypeScript code is transpiled into Lua, but you are not expected to be familiar with Lua.
+
+Expectations
+
+This role is a creative position. When you own a feature, you will work alongside others to take it through ideation to production. Your creative vision and initiative is essential to this process.
+
+As a Gameplay Programmer at Easy Games, your responsibilities will primarily include:
+
+Creating new features such as combat mechanics, skill systems, user interface, etc.
+Polishing or tuning existing game features
+Working with artists, designers, and other developers
+Owning entire aspects of the gameplay experience even after deployment
+Creating reusable gameplay systems
+Our development team works in weekly or bi-weekly release cycles. An ideal team member can be assigned one or more new features at the beginning of the cycle and have the features completed and ready for release by the end of the cycle. Checkout Roblox Bedwars and Roblox Islands to see our games and some of our most recent updates.
+
+The Fit
+
+You may be a good fit for our team if you have:
+
+3-5 years of gameplay programming or software engineering experience
+Experience working with game engines and game development concepts
+A passion for game design
+Ability to communicate ideas and suggestions for creating fun gameplay

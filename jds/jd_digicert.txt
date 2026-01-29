@@ -1,0 +1,47 @@
+Full job description
+Who we are
+
+We're a leading, global security authority that's disrupting our own category. Our encryption is trusted by the major ecommerce brands, the world's largest companies, the major cloud providers, entire country financial systems, entire internets of things and even down to the little things like surgically embedded pacemakers. We help companies put trust - an abstract idea - to work. That's digital trust for the real world.
+
+
+Job summary
+
+As a member of the Sales Engineering team at DigiCert, you will play a crucial role in ensuring technical presales success. This role involves developing and maintaining a technical understanding of DigiCert solutions, supporting demonstrations and evaluations for prospective customers, and assisting with responses to RFPs/RFIs. You will analyze customer needs to determine the fit for DigiCert solutions, capture feature requests, and provide feedback to Product Management. Collaboration with the sales team and cross-functional teams is essential, as is the ability to travel to customer sites and industry events as needed.
+
+
+What you will do
+
+Partner with other members of the SE team to help ensure technical presales success
+Develop and maintain a technical understanding of DigiCert solutions
+Develop ability to provide or support demonstrations of DigiCert solutions and services to prospects/customers
+Facilitate or support technical evaluations by prospective customers in a Proof of Concept (POC) environment
+Assist other team members with responses to functional and technical elements of RFPs/RFIs
+Develop ability to analyze customer needs to determine potential fit for DigiCert solutions and services to meet customer objectives
+Capture feature request/enhancement input from prospects/customers to provide feedback to Product Management
+Work in conjunction with other members of the sales team and cross-functional teams
+Travel as necessary to customer sites and industry forums/conferences as needed to support the objectives of the department
+
+What you will have
+
+1+ years' work experience in a cybersecurity or technical role
+Bachelor's degree or higher (preferably in systems management, computer science or cybersecurity)
+Working knowledge of basic IT environments (Windows, Linux, Mac, web servers, etc.)
+Experience working with Cloud technologies and providers a plus (Azure, AWS, GCP, etc.)
+Familiarity with Microsoft Office Suite
+Basic communication (written & verbal) and interpersonal skills
+Basic diagnostic and problem-solving skills
+Fluent in writing and speaking English
+Must be detailed oriented, understand and process data accurately
+Willingness to accept responsibility and accountability with a customer-first mindset
+
+Benefits
+
+Generous time off policies
+Top shelf benefits
+Education, wellness and lifestyle support
+DigiCert offers a competitive benefits package for all of our full-time employees.
+
+DigiCert is an Equal Opportunity employer and is committed to diversity in its workforce. In compliance with applicable federal and state laws, DigiCert prohibits discrimination on the basis of race or ethnicity, religion, color, national origin, sex, age, sexual orientation, gender identity/expression, veteran's status, status as a qualified person with a disability, or genetic information. Individuals from historically underrepresented groups, such as minorities, women, qualified person with disabilities, and protected veterans are strongly encouraged to apply.
+
+
+#LI-IW1

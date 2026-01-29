@@ -1,0 +1,163 @@
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{geometry}
+
+%----------MARGIN CONFIGURATION----------
+\geometry{left=0.5in, top=0.5in, right=0.5in, bottom=0.5in}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+%----------SECTION FORMATTING----------
+\titleformat{\section}{
+  \vspace{-8pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-4pt}]
+
+%----------CUSTOM COMMANDS----------
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-6pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.98\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-6pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.2in, itemsep=0pt, parsep=0pt]} 
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%
+
+\begin{document}
+
+%----------HEADER----------
+\begin{center}
+    {\Huge \scshape Saratchandra Patnaik} \\ \vspace{4pt}
+    \small 
+    \faPhone\ +1 602-301-8122 \hspace{10pt}
+    \faEnvelope\ \href{mailto:sarath92015@gmail.com}{\underline{sarath92015@gmail.com}} \hspace{10pt}
+    \faLinkedin\ \href{https://linkedin.com/in/saratchandra-92015}{\underline{linkedin.com/in/saratchandra}} \hspace{10pt}
+    \faMapMarker\ Tempe, AZ \\
+    \vspace{2pt} \textit{Systems Software Engineer | C++ \& AI Infrastructure}
+\end{center}
+
+%----------SUMMARY----------
+\vspace{-6pt}
+\begin{center}
+    \small
+    Systems Engineer with production experience in High-Throughput Networking, Kubernetes (EKS), and AI Model Integration. Expert in C++ socket programming, optimizing low-level network protocols (TCP/UDP), and ensuring 99.9\% availability for distributed microservices. Proven ability to automate operations at scale using Terraform and ArgoCD while integrating LLM capabilities into backend systems.
+\end{center}
+\vspace{-6pt}
+
+%-----------EXPERIENCE-----------
+\section{Professional Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Amagi Media Labs}{Bengaluru, India}
+      {Software Engineer \normalfont{\emph{[Cloud Systems, AWS EKS, Python]}}}{Aug 2022 -- Nov 2023}
+      \resumeItemListStart
+        \resumeItem{Engineered an automated root cause analysis pipeline that cut debugging time by \textbf{60\%} and orchestrated high-availability infrastructure for \textbf{15+ microservices} on \textbf{AWS EKS}.}
+        \resumeItem{Managed \textbf{ingress/egress traffic} for a Kubernetes-based platform, optimizing load balancing configurations to handle high-concurrency media workflows with \textbf{99.9\% release stability}.}
+        \resumeItem{Engineered asynchronous RESTful APIs using \textbf{FastAPI}, reducing P99 latency for critical internal data processing tools by optimizing request handling logic.}
+        \resumeItem{Automated the provisioning of networking resources (VPCs, Subnets) and customer environments using \textbf{Terraform}, cutting manual setup efforts by \textbf{90\%}.}
+        \resumeItem{Standardized \textbf{GitOps deployment pipelines} using ArgoCD, ensuring zero-downtime rollouts for high-traffic production services.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Blueplanet Solutions Inc.}{India}
+      {Software Engineer Intern \normalfont{\emph{[MySQL, Backend Optimization]}}}{Apr 2021 -- June 2021}
+      \resumeItemListStart
+        \resumeItem{Optimized database performance by refactoring complex SQL stored procedures, reducing query execution time by \textbf{50\%} for high-volume student record searches.}
+        \resumeItem{Analyzed server logs to identify and patch memory leaks in the backend application, improving server stability by \textbf{30\%}.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Systems \& AI Projects}
+    \resumeSubHeadingListStart
+
+      \resumeProjectHeading
+          {\textbf{Retrieval-Augmented Generation (RAG) System} \emph{[Python, OpenAI API, LangChain]}}{Dec 2025}
+          \resumeItemListStart
+            \resumeItem{Built a context-aware QA bot using \textbf{OpenAI's GPT-4} and LangChain to process large technical documentation, reducing information retrieval time by 40\%.}
+            \resumeItem{Implemented a \textbf{Vector Database (FAISS/Chroma)} pipeline to index and retrieve relevant context chunks, optimizing token usage and improving response accuracy.}
+            \resumeItem{Integrated the LLM backend with a Python API service to serve real-time queries with low latency.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{High-Performance Multi-Threaded UDP Server} \emph{[C++, Sockets, Concurrency]}}{Oct 2025}
+          \resumeItemListStart
+            \resumeItem{Engineered a high-concurrency UDP packet processor in \textbf{C++} capable of handling multiple client data streams simultaneously using custom socket handling.}
+            \resumeItem{Implemented \textbf{thread pooling} and \textbf{mutex locking} mechanisms to prevent race conditions and ensure thread-safe memory access during high-load ingestion.}
+            \resumeItem{Optimized packet throughput by manipulating raw sockets, simulating low-latency transmission patterns used in real-time telematics.}
+          \resumeItemListEnd
+
+    \resumeSubHeadingListEnd
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{AI \& Machine Learning}{: OpenAI API, Large Language Models (LLMs), RAG Pipelines, LangChain, PyTorch} \\
+     \textbf{Systems \& Languages}{: C++, C, Go, Python, Java, SQL, Shell Scripting (Bash)} \\
+     \textbf{Networking \& Low Level}{: Linux Network Stack, TCP/IP, UDP, Socket Programming, gRPC, Mutex/Concurrency} \\
+     \textbf{Cloud Infrastructure}{: AWS (EKS, Lambda, VPC, Route53), Kubernetes, Docker, Terraform (IaC), ArgoCD} \\
+     \textbf{Tools \& Platforms}{: Git, Jenkins, Grafana (SLOs/Monitoring), Wireshark, Linux (Ubuntu/RHEL)}
+    }}
+ \end{itemize}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Arizona State University}{Tempe, AZ}
+      {Master of Science in Computer Science (CGPA: 3.80/4)}{Dec 2025}
+    \resumeSubheading
+      {Christ University School of Engineering}{Bengaluru, India}
+      {Bachelor of Technology in Computer Science (CGPA: 9.11/10)}{May 2022}
+  \resumeSubHeadingListEnd
+
+%-------------------------------------------
+\end{document}

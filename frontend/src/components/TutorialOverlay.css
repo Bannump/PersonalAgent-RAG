@@ -1,0 +1,171 @@
+.tutorial-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10000;
+  pointer-events: none;
+  display: none;
+}
+
+.tutorial-spotlight {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.7);
+  border: 3px solid #3b82f6;
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.7),
+              0 0 30px rgba(59, 130, 246, 0.5),
+              inset 0 0 30px rgba(59, 130, 246, 0.3);
+  pointer-events: none;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.tutorial-highlighted {
+  position: relative;
+  z-index: 10001 !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tutorial-highlighted:not(.tutorial-no-transform) {
+  transform: scale(1.02);
+}
+
+.tutorial-tooltip {
+  position: absolute;
+  background: white;
+  color: #1f2937;
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 400px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  z-index: 10002;
+  pointer-events: auto;
+  transition: top 0.3s ease, left 0.3s ease, transform 0.3s ease, opacity 0.2s ease;
+  animation: tooltipFadeIn 0.3s ease;
+}
+
+.tutorial-tooltip.transitioning {
+  opacity: 0.7;
+  transition: top 0.3s ease, left 0.3s ease, transform 0.3s ease, opacity 0.15s ease;
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tutorial-tooltip-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.tutorial-tooltip-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.tutorial-close-button {
+  background: none;
+  border: none;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.tutorial-close-button:hover {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.tutorial-tooltip-message {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #4b5563;
+  margin-bottom: 16px;
+}
+
+.tutorial-tooltip-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.tutorial-progress {
+  font-size: 12px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.tutorial-navigation {
+  display: flex;
+  gap: 8px;
+}
+
+.tutorial-nav-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tutorial-nav-button.prev {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.tutorial-nav-button.prev:hover {
+  background: #e5e7eb;
+}
+
+.tutorial-nav-button.next {
+  background: #3b82f6;
+  color: white;
+}
+
+.tutorial-nav-button.next:hover {
+  background: #2563eb;
+}
+
+.tutorial-nav-button.finish {
+  background: #10b981;
+  color: white;
+}
+
+.tutorial-nav-button.finish:hover {
+  background: #059669;
+}
+
+.tutorial-nav-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Ensure highlighted elements are clickable */
+.tutorial-highlighted {
+  pointer-events: auto !important;
+}
