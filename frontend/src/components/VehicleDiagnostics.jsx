@@ -79,7 +79,7 @@ function VehicleDiagnostics() {
         }
       } else if (err.request) {
         // Request was made but no response received
-        errorMessage = 'Cannot connect to server. Please make sure the backend server is running on http://localhost:8000'
+        errorMessage = 'Cannot connect to server. Please check your internet connection and try again.'
       } else if (err.message) {
         // Other error
         errorMessage = err.message

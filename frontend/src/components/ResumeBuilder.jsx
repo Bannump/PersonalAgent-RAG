@@ -346,7 +346,7 @@ function ResumeBuilder() {
                 <p><strong>Format:</strong> {result.format}</p>
                 {result.download_url && (
                   <a
-                    href={`http://localhost:8000${result.download_url}`}
+                    href={`${import.meta.env.VITE_API_URL || ''}${result.download_url}`}
                     download
                     className="download-button"
                   >
