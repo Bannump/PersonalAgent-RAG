@@ -220,20 +220,37 @@ class LLMClient:
         self.openai_key = openai_key or settings.openai_api_key
         self.anthropic_key = anthropic_key or settings.anthropic_api_key
         
-        # Initialize clients
-        self.openai_client = OpenAILLMClient(self.openai_key)
-        if self.anthropic_key:
-            self.anthropic_client = AnthropicLLMClient(self.anthropic_key)
-        else:
-            self.anthropic_client = None
+        # Initialize clients (with validation)
+        self.openai_client = None
+        self.anthropic_client = None
+        self.active_client = None
         
-        # Set active client
-        if self.provider == "openai":
+        # Initialize OpenAI client if key is provided
+        if self.openai_key:
+            try:
+                self.openai_client = OpenAILLMClient(self.openai_key)
+            except Exception as e:
+                print(f"WARNING: Failed to initialize OpenAI client: {e}")
+        
+        # Initialize Anthropic client if key is provided
+        if self.anthropic_key:
+            try:
+                self.anthropic_client = AnthropicLLMClient(self.anthropic_key)
+            except Exception as e:
+                print(f"WARNING: Failed to initialize Anthropic client: {e}")
+        
+        # Set active client based on provider preference
+        if self.provider == "openai" and self.openai_client:
             self.active_client = self.openai_client
         elif self.provider == "anthropic" and self.anthropic_client:
             self.active_client = self.anthropic_client
-        else:
+        elif self.openai_client:
             self.active_client = self.openai_client
+        elif self.anthropic_client:
+            self.active_client = self.anthropic_client
+        
+        if not self.active_client:
+            print("WARNING: No LLM client initialized. Set OPENAI_API_KEY or ANTHROPIC_API_KEY environment variable.")
     
     def chat_completion(
         self,
@@ -243,6 +260,8 @@ class LLMClient:
         max_tokens: Optional[int] = None,
     ) -> str:
         """Generate chat completion using active provider"""
+        if not self.active_client:
+            raise RuntimeError("No LLM client available. Please set OPENAI_API_KEY environment variable.")
         return self.active_client.chat_completion(
             messages=messages,
             model=model,
@@ -257,6 +276,8 @@ class LLMClient:
         model: Optional[str] = None,
     ) -> str:
         """Generate vision-based completion with image"""
+        if not self.active_client:
+            raise RuntimeError("No LLM client available. Please set OPENAI_API_KEY environment variable.")
         return self.active_client.vision_completion(
             messages=messages,
             image_path=image_path,
@@ -265,5 +286,7 @@ class LLMClient:
     
     def get_embeddings(self, text: str, model: Optional[str] = None) -> List[float]:
         """Get text embeddings (always uses OpenAI for embeddings)"""
+        if not self.openai_client:
+            raise RuntimeError("OpenAI client not available. Please set OPENAI_API_KEY environment variable.")
         return self.openai_client.get_embeddings(text, model)
 
