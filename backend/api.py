@@ -44,10 +44,31 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Initialize modules
-vehicle_diagnostics = VehicleDiagnostics()
-resume_analyzer = ResumeAnalyzer()
-resume_builder = ResumeBuilder()
+# Lazy initialization of modules (initialized on first use to avoid startup crashes)
+_vehicle_diagnostics = None
+_resume_analyzer = None
+_resume_builder = None
+
+
+def get_vehicle_diagnostics():
+    global _vehicle_diagnostics
+    if _vehicle_diagnostics is None:
+        _vehicle_diagnostics = VehicleDiagnostics()
+    return _vehicle_diagnostics
+
+
+def get_resume_analyzer():
+    global _resume_analyzer
+    if _resume_analyzer is None:
+        _resume_analyzer = ResumeAnalyzer()
+    return _resume_analyzer
+
+
+def get_resume_builder():
+    global _resume_builder
+    if _resume_builder is None:
+        _resume_builder = ResumeBuilder()
+    return _resume_builder
 
 
 @app.get("/")
@@ -87,7 +108,7 @@ async def diagnose_vehicle(
             raise HTTPException(status_code=400, detail="Uploaded file is empty or invalid")
         
         try:
-            result = vehicle_diagnostics.diagnose(
+            result = get_vehicle_diagnostics().diagnose(
                 image_path=tmp_path,
                 user_description=description,
                 include_contacts=True,
@@ -142,7 +163,7 @@ async def analyze_resume(
             tmp_path = tmp_file.name
         
         try:
-            result = resume_analyzer.analyze(
+            result = get_resume_analyzer().analyze(
                 resume_path=tmp_path,
                 job_description_text=job_description,
             )
@@ -166,7 +187,7 @@ async def build_resume(data: dict):
         target_job = data.get("target_job")
         output_format = data.get("output_format", "pdf")
         
-        result = resume_builder.build_resume(
+        result = get_resume_builder().build_resume(
             experiences=experiences,
             skills=skills,
             education=education,
