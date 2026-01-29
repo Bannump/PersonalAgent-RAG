@@ -2,9 +2,14 @@
 Vector Store implementation using ChromaDB for RAG
 ChromaDB is optional - falls back to no-op mode for lightweight deployments
 """
-from typing import List, Dict, Optional, Any
+from __future__ import annotations
+from typing import List, Dict, Optional, Any, TYPE_CHECKING
 from pathlib import Path
 from src.my_personal_agent.config import settings
+
+# Import for type hints only (avoids circular imports at runtime)
+if TYPE_CHECKING:
+    from src.my_personal_agent.core.llm_client import LLMClient
 
 # Try to import chromadb (optional for lightweight deployments)
 try:
@@ -19,7 +24,7 @@ except ImportError:
 class VectorStore:
     """Vector store for storing and retrieving document embeddings"""
     
-    def __init__(self, collection_name: str = "personal_agent", llm_client: Optional[LLMClient] = None):
+    def __init__(self, collection_name: str = "personal_agent", llm_client: Optional["LLMClient"] = None):
         # Import LLMClient here to avoid circular imports
         from src.my_personal_agent.core.llm_client import LLMClient
         
