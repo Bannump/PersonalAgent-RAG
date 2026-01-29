@@ -1,8 +1,9 @@
-# Lightweight requirements for Vercel deployment
+# Lightweight requirements for Vercel/Railway deployment
 # Stays under 250MB limit by excluding heavy packages
 
 # Web Framework
 fastapi==0.104.1
+uvicorn==0.24.0
 python-multipart==0.0.6
 
 # LLM Providers (lightweight)
