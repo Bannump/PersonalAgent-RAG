@@ -24,14 +24,52 @@ A sophisticated RAG (Retrieval-Augmented Generation) application that serves as 
 
 ## 🏗️ Architecture
 
+Two independent workflows share a common LLM client layer:
+
 ```
-My Personal Agent
-├── Core RAG Engine (Vector DB + LLM Integration)
-├── Image Analysis Module (Vision AI)
-├── Resume Processing Module (ATS Optimization)
-├── Authentication System
-└── User Interface (CLI/Web)
+                        ┌─────────────────────────────────┐
+                        │         User / CLI / API         │
+                        └────────────┬────────────┬────────┘
+                                     │            │
+                     ┌───────────────▼──┐      ┌──▼───────────────────┐
+                     │ Vehicle          │      │ Resume Analyzer       │
+                     │ Diagnostics      │      │                       │
+                     │                  │      │  • Extract text       │
+                     │  • Build prompt  │      │  • Keyword match      │
+                     │  • Encode image  │      │  • Skill gap scoring  │
+                     └───────┬──────────┘      └──────────┬────────────┘
+                             │                            │
+                             │                   ┌────────▼────────────┐
+                             │                   │    RAG Engine        │
+                             │                   │                      │
+                             │                   │  1. Embed query      │
+                             │                   │  2. Search ChromaDB  │
+                             │                   │  3. Build context    │
+                             │                   └────────┬────────────┘
+                             │                            │
+                             │                   ┌────────▼────────────┐
+                             │                   │  ChromaDB            │
+                             │                   │  (cosine HNSW)       │
+                             │                   │  text-embedding-     │
+                             │                   │  3-small vectors     │
+                             │                   └────────┬────────────┘
+                             │                            │
+                        ┌────▼────────────────────────────▼────┐
+                        │            LLM Client                 │
+                        │  (OpenAI / Anthropic — configurable)  │
+                        └────────────────┬──────────────────────┘
+                                         │
+                        ┌────────────────┴──────────────────────┐
+                        │                                        │
+               ┌────────▼────────┐                   ┌──────────▼──────┐
+               │  GPT-4o Vision  │                   │  GPT-4o Chat    │
+               │  (image input)  │                   │  (text input)   │
+               └────────────────┘                   └─────────────────┘
 ```
+
+**Vehicle diagnostics** bypasses the vector store — the dashboard image is base64-encoded and sent directly to the vision model with a structured system prompt.
+
+**Resume analysis** goes through the full RAG pipeline — text is embedded, retrieved from ChromaDB, and passed as context to the LLM alongside the job description.
 
 ## 🚀 Quick Start
 
